@@ -130,9 +130,6 @@ for idx, reps in enumerate(range(1, 7, 1)):
     ax.loglog(runs, 1/np.sqrt(runs),
               label=r"$\frac{1}{\sqrt{N}}$", ls=':')
 
-    print(errors_binomial)
-    print(errors_normal)
-
     ax.set_title(
         rf"block reps = {reps}, n_qubits = {n_qubits}" +
         "\n" +
