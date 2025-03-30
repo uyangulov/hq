@@ -12,9 +12,8 @@ import numpy as np
 def op_to_superop(op):
     superop = np.kron(op, op.conj())
     if op.shape == (2, 2):
-       return superop.reshape([2] * 4)
+        return superop.reshape([2] * 4)
     return superop.reshape([2] * 8)
-    
 
 
 def apply_superop_1q(rho, super_op, i):
@@ -32,13 +31,13 @@ def apply_superop_2q(rho, super_op, i, j):
 
 
 def apply_gate_1q(psi, gate, i):
-    psi = np.tensordot(psi, gate, axes=[[i], [-1]])
+    psi = np.tensordot(gate, psi, axes=[[-1], [i]])
     psi = np.moveaxis(psi, 0, i)
     return psi
 
 
 def apply_gate_2q(psi, gate, i, j):
-    psi = np.tensordot(psi, gate, axes=[[i, j], [-2, -1]])
+    psi = np.tensordot(gate.reshape([2] * 4), psi, axes=[[-2, -1], [i, j]])
     psi = np.moveaxis(psi, [0, 1], [i, j])
     return psi
 
