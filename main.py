@@ -13,7 +13,7 @@ X = np.array([
     [1, 0]
 ], dtype=np.complex64)
 
-CZ = np.diag([1, 1, 1, -1]).reshape(2, 2, 2, 2).astype(np.complex64)
+CZ = np.diag([1, 1, 1, -1]).astype(np.complex64)
 GH = utils.op_to_superop(H)
 GCZ = utils.op_to_superop(CZ)
 I2 = np.eye(2, dtype=np.complex64)
@@ -116,7 +116,7 @@ for idx, reps in enumerate(range(1, 7, 1)):
 
     probs_perfect = simulate_perfect(n_qubits, reps, sigma)
 
-    print(probs_perfect)
+    print(np.round(probs_perfect,2))
 
     errors_binomial = collect_stats(
         n_qubits, reps, runs, probs_perfect, sigma=sigma, noise_kind="binomial")
