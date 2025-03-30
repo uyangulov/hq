@@ -1,14 +1,6 @@
 import numpy as np
 
 
-# def op_to_superop(op):
-#     if op.shape == (2, 2):  # 1-qubit case
-#         return np.einsum('ab,cd->abcd', op, op.conj())
-#     elif op.shape == (2, 2, 2, 2):  # 2-qubit case
-#         return np.einsum('abcd,efgh->abcdefgh', op, op.conj())
-#     else:
-#         raise ValueError("Invalid operator shape for superoperator conversion")
-
 def op_to_superop(op):
     superop = np.kron(op, op.conj())
     if op.shape == (2, 2):
