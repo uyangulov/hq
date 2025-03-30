@@ -16,7 +16,7 @@ X = np.array([
 CZ = np.diag([1, 1, 1, -1]).reshape(2, 2, 2, 2).astype(np.complex64)
 GH = utils.op_to_superop(H)
 GCZ = utils.op_to_superop(CZ)
-I2 = np.eye(2)
+I2 = np.eye(2, dtype=np.complex64)
 
 
 def init_psi(n):
@@ -43,7 +43,7 @@ def binom_prob(sigma):
 
 def normal_noise_gate(sigma):
     theta = sigma * np.random.randn()
-    return np.cos(theta / 2) * np.eye(2, dtype=np.complex64) - 1j * np.sin(theta/2) * X
+    return np.cos(theta / 2) * I2 - 1j * np.sin(theta/2) * X
 
 
 def binomial_noise_gate(sigma):
